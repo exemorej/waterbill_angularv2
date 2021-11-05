@@ -1,0 +1,28 @@
+<div class="row justify-content-center">
+    <div class="col-lg-5">
+        <div class="card">
+            <div class="card-header text-center text-white" style="background-color: #3C9AD7;">
+                LIST OF CONSUMERS
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-end mb-2">
+                    <a routerLink="/consumer/add" class="btn btn-secondary btn-sm w-100 text-white">ADD CONSUMER</a>
+                </div>
+                <div *ngIf="message != null; else elseBlock" class="text-danger text-center">
+                    {{ message }}
+                </div>
+                <ng-template #elseBlock>
+                    <div *ngFor="let consumer of consumers">
+                        <p>Name: <b>{{ consumer.name | titlecase}}</b></p>
+                        <p>Address: <b>{{ consumer.address | titlecase}}</b></p>
+                        <p>Meter Number: <b>{{ consumer.meter_num }}</b></p>
+                        <p>Due Bills: <b>{{ consumer.active_bills }}</b></p>
+                        <a routerLink="/consumer/{{ consumer.id }}" class="btn btn-success btn-sm text-white">View
+                            Details</a>
+                        <hr>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

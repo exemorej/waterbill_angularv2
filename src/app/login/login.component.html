@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+    <div class="col-lg-4">
+        <div class="card p-2 border-dark">
+            <div class="card-body">
+                <h3 class="text-center">Login Form</h3>
+                <form class="my-5" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert"
+                        *ngIf="this.message != null">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control mb-1" formControlName="email" autocomplete="off">
+                        <div *ngIf="loginForm.invalid && submitted" style="font-size: 12px; color:red">
+                            <div *ngIf="f.email.errors?.required">
+                                Email is required!
+                            </div>
+                            <div *ngIf="f.email.errors?.email">
+                                Email should be a valid email!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control mb-1" formControlName="password" autocomplete="off">
+                        <div *ngIf="loginForm.invalid && submitted" style="font-size: 12px; color:red">
+                            <div *ngIf="f.password.errors?.required">
+                                Password is required!
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary w-100">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

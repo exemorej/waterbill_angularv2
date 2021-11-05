@@ -1,0 +1,77 @@
+<div class="row justify-content-center">
+    <div class="col-lg-4">
+        <div class="card border-dark p-2">
+            <div class="card-body">
+                <h3 class="text-center">Register</h3>
+                <form class="my-5" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="errorData != null">
+                        <div *ngIf="errorData.email != null">
+                            {{ errorData.email }}
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control mb-1" id="name" autocomplete="off"
+                            formControlName="name">
+                        <div *ngIf="registerForm.invalid && submitted" style="font-size: 12px; color:red">
+                            <div *ngIf="f.name.errors?.required">
+                                Name is required!
+                            </div>
+                            <div *ngIf="f.name.errors?.minlength">
+                                Name should consists of 3 or more characters!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control mb-1" id="email" autocomplete="off"
+                            formControlName="email">
+                        <div *ngIf="registerForm.invalid && submitted" style="font-size: 12px; color:red">
+                            <div *ngIf="f.email.errors?.required">
+                                Email is required!
+                            </div>
+                            <div *ngIf="f.email.errors?.email">
+                                Email should be a valid email!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control mb-1" id="password" autocomplete="off"
+                            formControlName="password">
+                        <div *ngIf="registerForm.invalid && submitted" style="font-size: 12px; color:red">
+                            <div *ngIf="f.password.errors?.required">
+                                Password is required!
+                            </div>
+                            <div *ngIf="f.password.errors?.minlength">
+                                Password should consists of 4 or more characters!
+                            </div>
+                        </div>
+                        <div *ngIf="submitted && !matched" style="font-size: 12px; color:red">
+                            Password should match!
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="password1">Confirm Password</label>
+                        <input type="password" class="form-control mb-1" id="password1" autocomplete="off"
+                            formControlName="password1">
+                        <div *ngIf="registerForm.invalid && submitted" style="font-size: 12px; color:red">
+                            <div *ngIf="f.password1.errors?.required">
+                                Confirm Password is required!
+                            </div>
+                            <div *ngIf="f.password1.errors?.minlength">
+                                Confirm Password should consists of 4 or more characters!
+                            </div>
+
+                        </div>
+                        <div *ngIf="submitted && !matched" style="font-size: 12px; color:red">
+                            Password should match!
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary text-white w-100">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C9AD7;">
+    <div class=" container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" routerLink="/home" routerLinkActive="active">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/consumer-list" routerLinkActive="active">CONSUMER LIST</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/disconnection-list" routerLinkActive="active">DISCONNECTION
+                        LIST</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mb-lg-0 sd-flex" *ngIf="token == null">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/register" routerLinkActive="active">REGISTER</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/login" routerLinkActive="active">LOGIN</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mb-lg-0 sd-flex" *ngIf="token != null">
+                <li class="nav-item">
+                    <a class="nav-link" (click)="onClick()">LOGOUT</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

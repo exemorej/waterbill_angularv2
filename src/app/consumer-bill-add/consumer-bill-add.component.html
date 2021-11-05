@@ -1,0 +1,96 @@
+<div class="row justify-content-center">
+    <div class="col-lg-5">
+        <div class="card">
+            <div class="card-header text-center text-white" style="background-color: #3C9AD7;" *ngIf="!editMode">
+                ADD BILL
+            </div>
+            <div class="card-header text-center text-white" style="background-color: #3C9AD7;" *ngIf="editMode">
+                EDIT BILL
+            </div>
+            <div class="card-body">
+                <div *ngIf="message != null; else elseBlock" class="text-danger text-center">
+                    {{ message }}
+                </div>
+                <ng-template #elseBlock>
+                    <form [formGroup]="consumerBillForm">
+                        <div class="form-group mb-3">
+                            <label for="amount">Amount</label>
+                            <input type="text" id="amount" class="form-control mb-1" autocomplete="off"
+                                formControlName="amount">
+                            <div *ngIf="consumerBillForm.invalid && submitted" style="font-size: 12px; color:red">
+                                <div *ngIf="f.amount.errors?.required">
+                                    Amount field is required!
+                                </div>
+                                <div *ngIf="f.amount.errors?.pattern">
+                                    Amount should be a valid numeric value!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="paid">Paid</label>
+                            <input type="text" id="paid" class="form-control mb-1" autocomplete="off"
+                                formControlName="paid">
+                            <div *ngIf="consumerBillForm.invalid && submitted" style="font-size: 12px; color:red">
+                                <div *ngIf="f.paid.errors?.required">
+                                    Paid field is required!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="status">Status</label>
+                            <select class="form-select mb-1" id="status" aria-label="Default select example"
+                                formControlName="status">
+                                <option value="unpaid" selected>Unpaid</option>
+                                <option value="paid">Paid</option>
+                            </select>
+                            <div *ngIf="consumerBillForm.invalid && submitted" style="font-size: 12px; color:red">
+                                <div *ngIf="f.status.errors?.required">
+                                    Status field is required!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="period_start">Billing Date (start)</label>
+                            <input type="date" id="period_start" class="form-control mb-1" autocomplete="off"
+                                formControlName="period_start">
+                            <div *ngIf="consumerBillForm.invalid && submitted" style="font-size: 12px; color:red">
+                                <div *ngIf="f.period_start.errors?.required">
+                                    Billing Date (start) field is required!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="period_end">Billing Date (end)</label>
+                            <input type="date" id="period_end" class="form-control mb-1" autocomplete="off"
+                                formControlName="period_end">
+                            <div *ngIf="consumerBillForm.invalid && submitted" style="font-size: 12px; color:red">
+                                <div *ngIf="f.period_end.errors?.required">
+                                    Biling Date (end) field is required!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="due_date">Due Date</label>
+                            <input type="date" id="due_date" class="form-control mb-1" autocomplete="off"
+                                formControlName="due_date">
+                            <div *ngIf="consumerBillForm.invalid && submitted" style="font-size: 12px; color:red">
+                                <div *ngIf="f.due_date.errors?.required">
+                                    Due Date field is required!
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-sm text-white" (click)="onSubmit()"
+                            *ngIf="!editMode">Submit</button>&nbsp;
+                        <button class="btn btn-primary btn-sm text-white" (click)="onSubmit()" *ngIf="editMode">Save
+                            Changes</button>&nbsp;
+                        <a routerLink="/consumer/{{ consumerID }}" class="btn btn-secondary btn-sm text-white"
+                            *ngIf="!editMode">Back</a>
+                        <a routerLink="/consumer/{{ consumerID }}/bill/{{ billID }}"
+                            class="btn btn-secondary btn-sm text-white" *ngIf="editMode">Back</a>
+                    </form>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

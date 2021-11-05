@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+    <div class="col-lg-5">
+        <div class="card">
+            <div class="card-header text-center text-white" style="background-color: #3C9AD7;">
+                BILL DETAILS
+            </div>
+            <div class="card-body">
+                <div *ngIf="message != null; else elseBlock" class="text-center text-danger">
+                    {{ message }}
+                </div>
+                <ng-template #elseBlock>
+                    <p>Amount: <b>{{ bill.amount }}</b></p>
+                    <p>Paid: <b>{{ bill.paid }}</b></p>
+                    <p *ngIf="bill.status == 'unpaid'">Status: <span class="text-danger"><b>{{ bill.status |
+                                titlecase}}</b></span>
+                    </p>
+                    <p *ngIf="bill.status == 'paid'">Status: <span class="text-success"><b>{{ bill.status |
+                                titlecase}}</b></span>
+                    </p>
+                    <p>Billing Period: <b>{{ bill.period_start | date:'longDate'}}</b> - <b>{{ bill.period_end |
+                            date:'longDate'}}</b></p>
+                    <p *ngIf="bill.status == 'unpaid'">Due Date: <span class="text-danger"><b>{{ bill.due_date |
+                                date:'longDate'
+                                }}</b></span></p>
+                    <p *ngIf="bill.status == 'paid'">Due Date: <b>{{ bill.due_date | date:'longDate'}}</b></p>
+                    <p>Collector Name: <b>{{ bill.reader_name | titlecase }}</b></p>
+                    <p>Reading Date: <b>{{ bill.reading_date | date:'longDate' }}</b></p>
+
+                    <a routerLink="/consumer/{{ consumerID }}/bill/{{ bill.id }}/edit"
+                        class="btn btn-warning btn-sm text-white">Edit</a>&nbsp;
+
+                    <button type="button" class="btn btn-danger btn-sm text-white" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        Delete Bill
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary btn-sm"
+                                        data-bs-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-sm btn-danger" data-bs-dismiss="modal"
+                                        (click)="onDelete()">Delete Bill</button>&nbsp;
+                                </div>
+                            </div>
+                        </div>
+                    </div>&nbsp;
+
+                    <a routerLink="/consumer/{{ consumerID }}" class="btn btn-secondary btn-sm text-white">Back</a>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

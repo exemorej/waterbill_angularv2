@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-lg-5">
+        <div class="card">
+            <div class="card-header text-center text-white" style="background-color: #3C9AD7;">
+                FOR DISCONNECTION BILLS
+            </div>
+            <div class="card-body">
+                <div *ngIf="message != null; else elseBlock" class="text-danger text-center">
+                    {{ message }}
+                </div>
+                <ng-template #elseBlock>
+                    <div *ngFor="let consumer of consumers">
+                        <p>Name: <b>{{ consumer.name | titlecase}}</b></p>
+                        <p>Address: <b>{{ consumer.address | titlecase}}</b></p>
+                        <p>Meter Number: <b>{{ consumer.meter_num }}</b></p>
+                        <div class="card">
+                            <div class="card-header bg-secondary text-white text-center">DUE BILLS</div>
+                            <div class="card-body">
+                                <div *ngFor="let bill of consumer.bills">
+                                    <p>Amount: <b>{{ bill.amount }}</b></p>
+                                    <p>Paid: <b>{{bill.paid }}</b></p>
+                                    <p>Status: <span class="text-danger"><b>{{ bill.status | titlecase}}</b></span></p>
+                                    <p>Billing Period: <b>{{ bill.period_start| date:'longDate'}}</b> - <b>{{
+                                            bill.period_end| date:'longDate'}}</b></p>
+                                    <p>Due Date: <span class="text-danger"><b>{{ bill.due_date |
+                                                date:'longDate'}}</b></span></p>
+                                    <a routerLink="/consumer/{{ consumer.id }}/bill/{{ bill.id }}"
+                                        class="btn btn-success btn-sm text-white">View Bill</a>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>
