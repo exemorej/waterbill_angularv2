@@ -15,8 +15,8 @@ export class AppService {
     'Authorization': 'Bearer ' + localStorage.getItem('token')
   });
 
-  url = 'http://127.0.0.1:8000/api'
-
+  // url = 'http://127.0.0.1:8000/api';
+  url = 'https://waterbill-api.herokuapp.com/api';
 
   login(data: any) {
     return this.http.post(this.url + '/login', data);
